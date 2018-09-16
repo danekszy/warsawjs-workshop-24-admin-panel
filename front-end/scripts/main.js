@@ -1,29 +1,18 @@
-import ProductServiceFactory from '../product.service';
+import ProductServiceFactory from '../services/product.service';
+import ProductsComponent from '../components/products.component';
 
-const fetcher = window.fetch.bind(window);
-const renderProduct = product => `<li>
-  <h2>${product.name}</h2>
-  <p>${product.description}</p>
-  <img src="${product.image}" alt="${product.name}"/>
-</li>`;
 
-const renderTiles = products => `<ul>
-  ${products.map(renderProduct)}
-</ul>`;
+function renderApp(document, list) {
+  const { body } = document;
+  body.innerHTML = ProductsComponent(list);
+}
 
-const embedHTML = (html) => {
-  document.body.innerHTML = html;
-};
+export default async function init(window, document) {
+  const fetcher = window.fetch.bind(window);
 
-const ProductService = ProductServiceFactory(fetcher);
-ProductService.getProducts()
-  .then(renderTiles)
-  .then(embedHTML);
+  const ProductService = ProductServiceFactory(fetcher);
+  const productList = await ProductService.getProducts();
+  renderApp(document, productList);
+}
 
-  ProductService.getProducts()
-    .then(renderTiles)
-    .then(embedHTML);
-
-    ProductService.getProducts()
-      .then(renderTiles)
-      .then(embedHTML);
+init(window, document);

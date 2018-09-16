@@ -1,19 +1,5 @@
+import dummy from './products.dummy';
 import ProductServiceFactory from '../services/product.service';
-
-const dummy = [
-  {
-    id: 1,
-    name: 'abc',
-    image: 'http://example.com',
-    description: 'def',
-  },
-  {
-    id: 1,
-    name: 'abc',
-    image: 'http://example.com',
-    description: 'def',
-  },
-];
 
 const fetchStub = jest.fn(() => Promise.resolve({
   json: () => dummy,
