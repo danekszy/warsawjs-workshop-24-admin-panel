@@ -1,9 +1,9 @@
-const renderDescription = description => `<p>${description}</p>`;
+const renderDescription = product => `<p>${product.getDescription()}</p>`;
 
 const renderProduct = (product, index) => `<li style="clear: both;">
   <img src="http://placeimg.com/80/80/animals?${index}" alt="${product.name}" style="float: left;"/>
   <h2>${product.name}</h2>
-  ${renderDescription(product.description)}
+  ${renderDescription(product)}
 </li>`;
 
 

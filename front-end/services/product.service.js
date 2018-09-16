@@ -1,3 +1,5 @@
+import ProductModel from '../models/product.model';
+
 const serverUrl = 'http://localhost:3000';
 const serviceEndpointSuffix = '/products';
 const serviceEndpoint = `${serverUrl}${serviceEndpointSuffix}`;
@@ -5,6 +7,10 @@ const serviceEndpoint = `${serverUrl}${serviceEndpointSuffix}`;
 const CACHE_EXPIRY_TIME = 5 * 60 * 1000;
 
 const getJSONFromResponse = body => body.json();
+
+const transformResponseToModel = response => response.map(
+  product => new ProductModel(product),
+);
 
 class ProductService {
   constructor() {
@@ -34,7 +40,9 @@ class ProductService {
   }
 
   fetchProducts() {
-    return this.fetch(serviceEndpoint).then(getJSONFromResponse);
+    return this.fetch(serviceEndpoint)
+      .then(getJSONFromResponse)
+      .then(transformResponseToModel);
   }
 
   getProducts() {

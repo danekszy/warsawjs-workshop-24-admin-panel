@@ -7,7 +7,7 @@
     "test": "jest",
     "test-ci": "npm run start:back-end & npm t",
     "test:watch": "jest --watch",
-    "test:lint": "eslint front-end/*.js",
+    "test:lint": "eslint front-end/**/*.js",
     "start:back-end": "json-server back-end/db.json",
     "start:front-end": "webpack -w front-end/scripts/main.js -o front-end/dist/bundle.js --mode development"
   },
