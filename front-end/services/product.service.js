@@ -4,9 +4,8 @@ const serviceEndpoint = `${serverUrl}${serviceEndpointSuffix}`;
 
 const CACHE_EXPIRY_TIME = 5 * 60 * 1000;
 
-const getJSONFromResponse = (body) => {
-  return body.json();
-};
+const getJSONFromResponse = body => body.json();
+
 class ProductService {
   constructor() {
     this.cache = {
